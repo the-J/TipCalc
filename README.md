@@ -1,2 +1,6 @@
 # TipCalc
-react native and graphQl - learning project
+##React-Native with GraphQl
+
+* Setting up android sdk (marshmallow needed)
+
+(Level Up Tutorials)[https://www.leveluptutorials.com/]
