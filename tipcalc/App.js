@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { TextInput, StyleSheet, Text, View } from 'react-native';
 
 import Hello from './Hello';
 
@@ -7,8 +7,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.view1} />
-        <View style={styles.view2} />
+        <TextInput style={styles.input} />
       </View>
     );
   }
@@ -17,19 +16,17 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 20
   },
-  view1: {
-    backgroundColor: '#FF00FF',
-    flex: 3,
-    height: '100%'
-  },
-  view2: {
-    backgroundColor: '#00FFFF',
-    flex: 1,
-    height: '100%'
+  input: {
+    height: 100,
+    width: '100%',
+    borderColor: '#333',
+    borderWidth: 1,
+    padding: 5,
+    fontSize: 35
   }
 });
