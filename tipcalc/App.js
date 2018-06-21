@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, Text, View } from 'react-native';
+import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
 
 import Hello from './Hello';
 
@@ -9,24 +9,27 @@ export default class App extends Component {
 
     this.state = {
       input: '',
-      tip: 0
+      tip: 0,
+      percent: 0.2
     };
   }
 
   calculateTip() {
     if (this.state.input) {
-      tip = parseFloat(this.state.input) * 0.2;
+      tip = parseFloat(this.state.input) * this.state.percent;
       tip = (Math.round(tip * 100) / 100).toFixed(2);
       this.setState({ tip });
     }
   }
 
   render() {
-    const { tip } = this.state;
+    const { tip, percent } = this.state;
 
     return (
       <View style={styles.container}>
-        <Text>${tip}</Text>
+        <Text>
+          ${tip} / default: {percent}
+        </Text>
         <TextInput
           style={styles.input}
           value={this.state.input}
@@ -36,6 +39,26 @@ export default class App extends Component {
             this.setState({ input: value }, () => this.calculateTip());
           }}
         />
+        <View style={styles.buttonGroup}>
+          <Button
+            title="10%"
+            onPress={() =>
+              this.setState({ percent: 0.1 }, () => this.calculateTip())
+            }
+          />
+          <Button
+            title="20%"
+            onPress={() =>
+              this.setState({ percent: 0.2 }, () => this.calculateTip())
+            }
+          />
+          <Button
+            title="25%"
+            onPress={() =>
+              this.setState({ percent: 0.25 }, () => this.calculateTip())
+            }
+          />
+        </View>
       </View>
     );
   }
@@ -56,5 +79,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 5,
     fontSize: 35
+  },
+  buttonGroup: {
+    flexDirection: 'row'
   }
 });
