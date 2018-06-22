@@ -29,35 +29,26 @@ export default class App extends Component {
   }
 
   setCustomTip(tipCustom) {
-    console.log('tipCustom', typeof tipCustom, tipCustom);
-    if (
-      tipCustom.length &&
-      tipCustom !== '0' &&
-      tipCustom.length < 4 &&
-      parseFloat(tipCustom) <= 100
-    ) {
-      this.setState({
-        tip: parseFloat(tipCustom) / 100,
-        tipValue: parseFloat(tipCustom) / 100
-      });
+    if (tipCustom !== 0 && tipCustom <= 1) {
+      this.setState(
+        {
+          tip: tipCustom,
+          tipValue: tipCustom
+        },
+        () => this.calculateTip()
+      );
     } else {
-      this.setState({
-        tip: 0,
-        tipValue: 0
-      });
+      this.setState(
+        {
+          tip: 0,
+          tipValue: 0
+        },
+        () => this.calculateTip()
+      );
     }
-
-    this.calculateTip();
   }
 
   calculateTip() {
-    console.log(
-      this.state.tipValue,
-      this.state.input,
-      typeof this.state.input,
-      this.state.input && this.state.tipValue !== 0
-    );
-
     if (this.state.input.length) {
       tip = parseFloat(this.state.input) * this.state.tipValue;
       tip = (Math.round(tip * 100) / 100).toFixed(2);
@@ -99,7 +90,11 @@ export default class App extends Component {
             value={
               this.state.tipValue ? (this.state.tipValue * 100).toString() : ''
             }
-            onChangeText={tipCustom => this.setCustomTip(tipCustom)}
+            onChangeText={tipCustom => {
+              tipCustom = parseFloat(tipCustom) / 100;
+              tipCustom = (Math.round(tipCustom * 100) / 100).toFixed(2);
+              this.setCustomTip(tipCustom);
+            }}
           />
 
           <Text>%</Text>
