@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Font, AppLoading } from 'expo';
 import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
 import {
+  Root,
   Container,
   Content,
   Header,
@@ -31,15 +32,12 @@ export default class App extends Component {
     };
   }
 
-  async componentDidMount() {
-    try {
-      await Font.loadAsync({
-        FontAwesome,
-        MaterialIcons
-      });
-    } catch (err) {
-      console.error('fonts err:', err);
-    }
+  async componentWillMount() {
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf')
+    });
+
     this.setState({ loading: false });
   }
 
@@ -91,11 +89,9 @@ export default class App extends Component {
 
     if (loading) {
       return (
-        <Expo.AppLoading
-          startAsync={this._cacheResourcesAsync}
-          onFinish={() => this.setState({ loading: false })}
-          onError={console.warn}
-        />
+        <Root>
+          <AppLoading />
+        </Root>
       );
     }
 
