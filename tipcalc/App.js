@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { Font, AppLoading } from 'expo';
-import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import {
+  Button,
+  TextInput,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  Platform
+} from 'react-native';
 import {
   Root,
   Container,
@@ -30,6 +38,12 @@ export default class App extends Component {
 
       loading: true
     };
+
+    if (Platform.OS === 'ios') {
+      consle.log('ios');
+    } else if (Platform.android === 'android') {
+      console.log('android');
+    }
   }
 
   async componentWillMount() {
@@ -97,15 +111,17 @@ export default class App extends Component {
 
     return (
       <Container>
-        <Header>
-          <Left>
-            <Body>
-              <Title>Header</Title>
-            </Body>
-          </Left>
+        <View style={styles.header}>
+          <Header>
+            <Left>
+              <Body>
+                <Title>Header</Title>
+              </Body>
+            </Left>
 
-          <Right />
-        </Header>
+            <Right />
+          </Header>
+        </View>
 
         <Content padder>
           <View style={styles.container}>
@@ -160,6 +176,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20
+  },
+  header: {
+    ...Platform.select({
+      android: {
+        marginTop: StatusBar.currentHeight
+      }
+    })
   },
   input: {
     height: 100,
