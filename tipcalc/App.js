@@ -1,29 +1,10 @@
 import React, { Component } from 'react';
 import { Font, AppLoading } from 'expo';
-import {
-  Button,
-  TextInput,
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  Platform
-} from 'react-native';
-import {
-  Root,
-  Container,
-  Content,
-  Header,
-  Left,
-  Right,
-  Body,
-  Title
-} from 'native-base';
-
-import FontAwesome from './node_modules/@expo/vector-icons/fonts/FontAwesome.ttf';
-import MaterialIcons from './node_modules/@expo/vector-icons/fonts/MaterialIcons.ttf';
+import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { Root, Container, Content } from 'native-base';
 
 import Hello from './Hello';
+import Head from './components/Head';
 
 export default class App extends Component {
   constructor() {
@@ -39,11 +20,11 @@ export default class App extends Component {
       loading: true
     };
 
-    if (Platform.OS === 'ios') {
-      consle.log('ios');
-    } else if (Platform.android === 'android') {
-      console.log('android');
-    }
+    // if (Platform.OS === 'ios') {
+    //   consle.log('ios');
+    // } else if (Platform.android === 'android') {
+    //   console.log('android');
+    // }
   }
 
   async componentWillMount() {
@@ -111,17 +92,7 @@ export default class App extends Component {
 
     return (
       <Container>
-        <View style={styles.header}>
-          <Header>
-            <Left>
-              <Body>
-                <Title>Header</Title>
-              </Body>
-            </Left>
-
-            <Right />
-          </Header>
-        </View>
+        <Head />
 
         <Content padder>
           <View style={styles.container}>
@@ -176,13 +147,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20
-  },
-  header: {
-    ...Platform.select({
-      android: {
-        marginTop: StatusBar.currentHeight
-      }
-    })
   },
   input: {
     height: 100,
