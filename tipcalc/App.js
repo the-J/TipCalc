@@ -105,7 +105,7 @@ export default class App extends Component {
                 style={styles.input}
                 value={input}
                 keyboardType="numeric"
-                placeholder="0.00"
+                placeholder="0"
                 underlineColorAndroid="#FFF"
                 placeholderTextColor="#FFF"
                 onChangeText={value => this.setInput(value)}
@@ -118,12 +118,12 @@ export default class App extends Component {
                 <TextInput
                   style={styles.inputCustomTip}
                   keyboardType="numeric"
-                  placeholder="0.00"
+                  placeholder="0"
                   underlineColorAndroid="#FFF"
                   placeholderTextColor="#FFF"
                   value={
                     this.state.tipValue
-                      ? (this.state.tipValue * 100).toString()
+                      ? (this.state.tipValue * 100).toFixed().toString()
                       : ''
                   }
                   onChangeText={tipCustom => {
