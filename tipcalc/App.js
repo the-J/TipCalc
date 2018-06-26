@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Font, AppLoading } from 'expo';
-import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
 import { Root, Container, Content } from 'native-base';
 
 import Hello from './Hello';
@@ -79,6 +79,26 @@ export default class App extends Component {
     }
   }
 
+  alert() {
+    Alert.alert(
+      'Just hello',
+      'This does nothing',
+      [
+        {
+          text: 'Ask me later',
+          onPress: () => console.log('Ask me later pressed')
+        },
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel'
+        },
+        { text: 'OK', onPress: () => console.log('OK Pressed') }
+      ],
+      { cancelable: false }
+    );
+  }
+
   render() {
     const { tip, tipValue, loading } = this.state;
 
@@ -132,6 +152,10 @@ export default class App extends Component {
               />
 
               <Text>%</Text>
+            </View>
+
+            <View>
+              <Button title="just alert" onPress={this.alert} />
             </View>
           </View>
         </Content>
