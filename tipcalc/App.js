@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Font, AppLoading } from 'expo';
-import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
+import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
 import { Root, Container, Content } from 'native-base';
 
 import Head from './components/Head';
@@ -51,11 +51,19 @@ export default class App extends Component {
         },
         () => this.calculateTip()
       );
-    } else {
+    } else if (isNaN(tipCustom)) {
       this.setState(
         {
           tip: 0,
           tipValue: 0
+        },
+        () => this.calculateTip()
+      );
+    } else {
+      this.setState(
+        {
+          tip: 0,
+          tipValue: 1
         },
         () => this.calculateTip()
       );
@@ -74,7 +82,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { input, tip, tipValue, loading } = this.state;
+    const { input, tipValue, loading } = this.state;
 
     if (loading) {
       return (
