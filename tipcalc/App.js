@@ -4,6 +4,7 @@ import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
 import { Root, Container, Content } from 'native-base';
 
 import Head from './components/Head';
+import Values from './components/Values';
 
 export default class App extends Component {
   constructor() {
@@ -73,7 +74,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { tip, tipValue, loading } = this.state;
+    const { input, tip, tipValue, loading } = this.state;
 
     if (loading) {
       return (
@@ -89,13 +90,11 @@ export default class App extends Component {
 
         <Content padder>
           <View style={styles.container}>
-            <Text>
-              ${tip} / tip: {tipValue} of the value
-            </Text>
+            <Values bill={input} tipPercentage={tipValue} />
 
             <TextInput
               style={styles.input}
-              value={this.state.input}
+              value={input}
               keyboardType="numeric"
               placeholder="0.00"
               onChangeText={value => this.setInput(value)}
