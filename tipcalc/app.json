@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "26.0.0"
+    "sdkVersion": "26.0.0",
+    "name": "MBJ - TipCalc",
+    "version": "1.0.0",
+    "slug": "tipcalculator",
+    "icon": "./mbj_logo.png",
+    "ios": {
+      "bundleIdentifier": "com.thej.tipcalculator"
+    },
+    "android": {
+      "package": "com.thej.tipcalculator"
+    }
   }
 }
