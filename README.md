@@ -14,6 +14,14 @@ styles: {
 
 diff OS: {
   *naming convention .android.js, .ios.js - keep diff files fr diff os;
+  * {
+       if (Platform.OS === 'ios') {
+          consle.log('ios');
+        } else if (Platform.android === 'android') {
+          console.log('android');
+        }
+    };
+
 }
 
 All the rest is react.

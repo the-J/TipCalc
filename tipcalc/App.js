@@ -3,7 +3,6 @@ import { Font, AppLoading } from 'expo';
 import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
 import { Root, Container, Content } from 'native-base';
 
-import Hello from './Hello';
 import Head from './components/Head';
 
 export default class App extends Component {
@@ -19,12 +18,6 @@ export default class App extends Component {
 
       loading: true
     };
-
-    // if (Platform.OS === 'ios') {
-    //   consle.log('ios');
-    // } else if (Platform.android === 'android') {
-    //   console.log('android');
-    // }
   }
 
   async componentWillMount() {
@@ -77,26 +70,6 @@ export default class App extends Component {
     } else {
       this.setState({ tip: 0, input: '' });
     }
-  }
-
-  alert() {
-    Alert.alert(
-      'Just hello',
-      'This does nothing',
-      [
-        {
-          text: 'Ask me later',
-          onPress: () => console.log('Ask me later pressed')
-        },
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel'
-        },
-        { text: 'OK', onPress: () => console.log('OK Pressed') }
-      ],
-      { cancelable: false }
-    );
   }
 
   render() {
@@ -152,10 +125,6 @@ export default class App extends Component {
               />
 
               <Text>%</Text>
-            </View>
-
-            <View>
-              <Button title="just alert" onPress={this.alert} />
             </View>
           </View>
         </Content>
