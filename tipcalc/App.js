@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Font, AppLoading } from 'expo';
-import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { Button, TextInput, StyleSheet, View } from 'react-native';
 import { Root, Container, Content } from 'native-base';
 
 import Head from './components/Head';
@@ -96,45 +96,46 @@ export default class App extends Component {
       <Container>
         <Head />
 
-        <Content padder>
-          <View style={styles.container}>
+        <View style={styles.container}>
+          <Content style={{ width: '100%' }}>
             <Values bill={input} tipPercentage={tipValue} />
 
-            <TextInput
-              style={styles.input}
-              value={input}
-              keyboardType="numeric"
-              placeholder="0.00"
-              onChangeText={value => this.setInput(value)}
-            />
-
-            <View style={styles.buttonGroup}>
-              <Button title="10%" onPress={() => this.setFixedTip(0.1)} />
-              <Button title="20%" onPress={() => this.setFixedTip(0.2)} />
-              <Button title="25%" onPress={() => this.setFixedTip(0.25)} />
-            </View>
-
-            <View style={styles.customTip}>
+            <View style={styles.inputsGroup}>
               <TextInput
-                style={styles.customTipInput}
+                style={styles.input}
+                value={input}
                 keyboardType="numeric"
                 placeholder="0.00"
-                value={
-                  this.state.tipValue
-                    ? (this.state.tipValue * 100).toString()
-                    : ''
-                }
-                onChangeText={tipCustom => {
-                  tipCustom = parseFloat(tipCustom) / 100;
-                  tipCustom = (Math.round(tipCustom * 100) / 100).toFixed(2);
-                  this.setCustomTip(tipCustom);
-                }}
+                underlineColorAndroid="#FFF"
+                placeholderTextColor="#FFF"
+                onChangeText={value => this.setInput(value)}
               />
 
-              <Text>%</Text>
+              <View style={styles.tipPercentageGroup}>
+                <Button title="10%" onPress={() => this.setFixedTip(0.1)} />
+                <Button title="20%" onPress={() => this.setFixedTip(0.2)} />
+                <Button title="25%" onPress={() => this.setFixedTip(0.25)} />
+                <TextInput
+                  style={styles.inputCustomTip}
+                  keyboardType="numeric"
+                  placeholder="0.00"
+                  underlineColorAndroid="#FFF"
+                  placeholderTextColor="#FFF"
+                  value={
+                    this.state.tipValue
+                      ? (this.state.tipValue * 100).toString()
+                      : ''
+                  }
+                  onChangeText={tipCustom => {
+                    tipCustom = parseFloat(tipCustom) / 100;
+                    tipCustom = (Math.round(tipCustom * 100) / 100).toFixed(2);
+                    this.setCustomTip(tipCustom);
+                  }}
+                />
+              </View>
             </View>
-          </View>
-        </Content>
+          </Content>
+        </View>
       </Container>
     );
   }
@@ -143,31 +144,30 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
-    justifyContent: 'center',
+    height: '100%',
+    width: '100%'
+  },
+  inputsGroup: {
+    backgroundColor: '#212121',
     padding: 20
   },
   input: {
-    height: 100,
+    height: 50,
     width: '100%',
-    borderColor: '#333',
-    borderWidth: 1,
     padding: 5,
-    fontSize: 35
+    fontSize: 20,
+    color: '#FFF'
   },
-  buttonGroup: {
-    flexDirection: 'row'
-  },
-  customTip: {
+  tipPercentageGroup: {
     flexDirection: 'row',
-    padding: 20
+    justifyContent: 'space-between'
   },
-  customTipInput: {
-    height: 30,
-    width: '60%',
-    borderColor: '#333',
-    borderWidth: 1,
-    padding: 5
+  inputCustomTip: {
+    height: 40,
+    width: '30%',
+    padding: 5,
+    color: '#FFF'
   }
 });
