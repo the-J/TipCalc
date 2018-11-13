@@ -2,6 +2,7 @@
   "expo": {
     "sdkVersion": "26.0.0",
     "name": "MBJ - TipCalc",
+    "description": "SImple app for calculating tips",
     "version": "1.0.0",
     "slug": "tipcalculator",
     "icon": "./mbj_logo.png",
