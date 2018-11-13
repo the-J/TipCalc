@@ -72,7 +72,7 @@ export default class App extends Component {
 
   calculateTip() {
     if (this.state.input.length) {
-      tip = parseFloat(this.state.input) * this.state.tipValue;
+      let tip = parseFloat(this.state.input) * this.state.tipValue;
       tip = (Math.round(tip * 100) / 100).toFixed(2);
 
       this.setState({ tip });
