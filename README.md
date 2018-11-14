@@ -1,8 +1,8 @@
 # TipCalc - Simple App for calculating tips
 
 #### React-Native with GraphQl and Expo
-* live on [expo](https://expo.io/@astronnomos/tipcalculator)
-* development requirements: android sdk - marshmallow
+* [expo](https://expo.io/@astronnomos/tipcalculator)
+* [build within this repo](build)
 
 ![tipCalculator](assets/tipCalculator.gif)
 
